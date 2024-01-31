@@ -14,9 +14,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    void Awake()
+    {
+        // Get reference to the Rigidbody component attached to the same GameObject
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        
     }
 
 
