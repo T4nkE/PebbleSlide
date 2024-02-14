@@ -7,6 +7,8 @@ public class EnemyAI : MonoBehaviour
     public Transform player; // Reference to the player object
     public float moveSpeed = 5f; // Speed at which the object moves
     public float detectionRadius = 1f;
+    public float delay = 3;
+    float timer;
 
     void Start()
     {
@@ -25,6 +27,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        timer += Time.deltaTime;
         if (player != null)
         {
             // Calculate the direction from the tracking object to the player
@@ -38,6 +41,20 @@ public class EnemyAI : MonoBehaviour
             {
                 transform.position += direction * moveSpeed * Time.deltaTime;
             }
+
+            while (Vector3.Distance(transform.position, player.position) <= detectionRadius && timer > delay)
+            {
+                if (Vector3.Distance(transform.position, player.position) <= detectionRadius )
+                {
+                    takeDamage();
+                    timer = 0;
+                }
+            }
         }
+    }
+
+    void takeDamage()
+    {
+        Debug.Log("Take Damage");
     }
 }
