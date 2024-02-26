@@ -5,18 +5,18 @@ using UnityEngine;
 public class GM_AI : MonoBehaviour
 {
     public int Difficulty = 0; //Game Diffiulty as a whole, selected in menu
-    private float PointScaling; //Factor by which points are multiplied by
+    private double PointScaling; //Factor by which points are multiplied by
     
     public float GMPointTimer = 2f;     //TIMER when the GameMasterAI(GMAI) gets points
     public float GMSpendingTimer = 5f;  //TIMER when the GMAI starts spending points
     public float DifficultyScaling;     //TIMER "more time = more difficulty" time frame
     
-    public float DifficultyLevel; //what ups the difficulty after the timeframe
+    private double DifficultyLevel = 1; //what ups the difficulty after the timeframe
 
-    private int[] PointSelection = {10,12,13,14,15}; //raw point score amount that can be given, array for variation
-    private int selectedPointAmount; //raw amount of points selected for the GMAI
+    private double[] PointSelection = {10,12,13,14,15}; //raw point score amount that can be given, array for variation
+    private double selectedPointAmount; //raw amount of points selected for the GMAI
 
-    private float CurrentPoints; //the current amount of points that the GMAI has
+    private double CurrentPoints; //the current amount of points that the GMAI has
 
     private void Start()
     {
@@ -74,24 +74,23 @@ public class GM_AI : MonoBehaviour
 
     void GivePoints()
     {
-        // Retrieve the object at a fixed index (0 to 4)
-        int randomIndex = Random.Range(0, 5);
+        int randomPosition = Random.Range(0, 5); //Retrieve an array item at a fixed position (0 to 4)
 
-        // Retrieve the object at the random index
-        GameObject selectedPointAmount = PointSelection[randomIndex];
+        double selectedPointValue = PointSelection[randomPosition];  //Retrieve the point value at the random index
 
-        CurrentPoints += selectedPointAmount * 1.2
+        CurrentPoints += selectedPointValue * PointScaling * DifficultyLevel; //Give points based on other difficulty values
+        Debug.Log("Function1 called.");
     }
 
     void SpendPoints()
     {
-        // Your code for function2
+        //Code to spend points (requres actual enemy prefabs)
         Debug.Log("Function2 called.");
     }
 
     void Function3()
     {
-        // Your code for function3
+        DifficultyLevel += .1;
         Debug.Log("Function3 called.");
     }
 }

@@ -512,8 +512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d974058edca84fa698a857a753d8911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Difficulty: 0
   GMPointTimer: 2
   GMSpendingTimer: 5
+  DifficultyScaling: 0
 --- !u!4 &642511856
 Transform:
   m_ObjectHideFlags: 0
@@ -1055,7 +1057,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1737572693
 GameObject:
   m_ObjectHideFlags: 0
