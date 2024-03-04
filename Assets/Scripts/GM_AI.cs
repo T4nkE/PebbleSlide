@@ -11,7 +11,7 @@ public class GM_AI : MonoBehaviour
     public float GMSpendingTimer = 5f;  //TIMER when the GMAI starts spending points
     public float DifficultyScaling;     //TIMER "more time = more difficulty" time frame
     
-    private double DifficultyLevel = 1; //what ups the difficulty after the timeframe
+    private double DifficultyStage = 1; //what ups the difficulty after the timeframe
 
     private double[] PointSelection = {10,12,13,14,15}; //raw point score amount that can be given, array for variation
     private double selectedPointAmount; //raw amount of points selected for the GMAI
@@ -78,7 +78,7 @@ public class GM_AI : MonoBehaviour
 
         double selectedPointValue = PointSelection[randomPosition];  //Retrieve the point value at the random index
 
-        CurrentPoints += selectedPointValue * PointScaling * DifficultyLevel; //Give points based on other difficulty values
+        CurrentPoints += selectedPointValue * PointScaling * DifficultyStage; //Give points based on other difficulty values
         Debug.Log("Function1 called.");
     }
 
@@ -90,7 +90,7 @@ public class GM_AI : MonoBehaviour
 
     void Function3()
     {
-        DifficultyLevel += .1;
+        DifficultyStage += .1;
         Debug.Log("Function3 called.");
     }
 }
