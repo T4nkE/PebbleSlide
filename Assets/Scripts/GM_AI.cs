@@ -5,7 +5,7 @@ using UnityEngine;
 public class GM_AI : MonoBehaviour
 {
     public int Difficulty = 0; //Game Diffiulty as a whole, selected in menu
-    private double PointScaling; //Factor by which points are multiplied by
+    private double BossPointScaling; //Factor by which points are multiplied by (UPPON BOSS FIGHT)
     
     public float GMPointTimer = 2f;     //TIMER when the GameMasterAI(GMAI) gets points
     public float GMSpendingTimer = 5f;  //TIMER when the GMAI starts spending points
@@ -27,19 +27,19 @@ public class GM_AI : MonoBehaviour
 
         if(Difficulty == -1)        //Difficulty Level 1
         {
-            PointScaling = .8;         //Factor by which points are multiplied by
+            BossPointScaling = .8;         //Factor by which points are multiplied by
             DifficultyScaling = 150;    //"more time = more difficulty" time frame
         }
 
         if(Difficulty == 0)         //Difficulty Level 2
         {
-            PointScaling = 1;          //Factor by which points are multiplied by
+            BossPointScaling = 1;          //Factor by which points are multiplied by
             DifficultyScaling = 120;    //"more time = more difficulty" time frame
         }
 
         if(Difficulty == 1)         //Difficulty Level 3
         {
-            PointScaling = 1.2;        //Factor by which points are multiplied by
+            BossPointScaling = 1.2;        //Factor by which points are multiplied by
             DifficultyScaling = 90;    //"more time = more difficulty" time frame
         }
 
@@ -78,7 +78,7 @@ public class GM_AI : MonoBehaviour
 
         double selectedPointValue = PointSelection[randomPosition];  //Retrieve the point value at the random index
 
-        CurrentPoints += selectedPointValue * PointScaling * DifficultyStage; //Give points based on other difficulty values
+        CurrentPoints += selectedPointValue * DifficultyStage; //Give points based on other difficulty values
         Debug.Log("Function1 called.");
     }
 
