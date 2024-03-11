@@ -14,10 +14,13 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private SpriteRenderer spriteRenderer;
+    
     void Awake()
     {
         // Get reference to the Rigidbody component attached to the same GameObject
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -35,6 +38,17 @@ public class PlayerMovement : MonoBehaviour
         if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && !isJumping)
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
+        }
+
+        // Flip the sprite if the character is moving left
+        if (move < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        // Flip the sprite if the character is moving right
+        else if (move > 0)
+        {
+            spriteRenderer.flipX = false;
         }
     }
 
