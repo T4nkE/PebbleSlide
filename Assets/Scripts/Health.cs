@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public Slider healthSlider;
+    public float maxHealth;
+    public float health;
+    public GameObject healthBar;
 
-    public void SetHealth(int health)
+    public void SetHealth(float newHealth)   
     {
-        healthSlider.value = health;
+        health = newHealth;
+
+        // Calculate the scale factor based on the current health
+        float scaleFactor = health / maxHealth;
+
+        // Set the scale of the Healthbar GameObject
+        healthBar.transform.localScale = new Vector3(scaleFactor, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 }

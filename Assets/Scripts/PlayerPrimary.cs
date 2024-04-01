@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class PlayerPrimary : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public float primaryDamage;
+    public GameObject enemy;
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Health enemyHealth = other.gameObject.GetComponent<Health>();
+            if (enemyHealth != null)
+            {
+                // Reduce enemy health
+                enemyHealth.SetHealth(enemyHealth.health - primaryDamage);
+            }
+        }
     }
 }

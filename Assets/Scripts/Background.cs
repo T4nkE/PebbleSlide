@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class C : MonoBehaviour
+public class Background : MonoBehaviour
 {
     public float backgroundSpeed;
     public GameObject Player;
