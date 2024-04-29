@@ -73,4 +73,9 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
     }
+
+    public bool canAttack()
+    {
+        return move == 0;
+    }
 }

@@ -2,6 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This script is currently completely useless,
+// and does not serve a real function at the moment at all.
+// This would have been used for spawning in enemies
+// at an increasing rate.
+// This does satisfy some requirements but unfortunately 
+// it does not really hold much of a purpouse for the game.
+// This would have been the backbone for the difficulty scaling
+// with the player.
+
+/*   Remove this to uncomment
+
+
+
 public class GM_AI : MonoBehaviour
 {
     public int Difficulty = 0; //Game Diffiulty as a whole, selected in menu
@@ -94,3 +107,7 @@ public class GM_AI : MonoBehaviour
         Debug.Log("Function3 called.");
     }
 }
+
+
+
+Remove this to uncomment   */
