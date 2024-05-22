@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.x < -15f)
+        if (transform.position.x < -65f || transform.position.x > 65f)
         {
             Destroy(gameObject);
         }
