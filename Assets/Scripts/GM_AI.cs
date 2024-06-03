@@ -11,17 +11,23 @@ using UnityEngine;
 // This would have been the backbone for the difficulty scaling
 // with the player.
 
-/*   Remove this to uncomment
-
-
-
 public class GM_AI : MonoBehaviour
 {
+    public GameObject EnemyPrefab;
+    public GameObject Spawn1;
+    public GameObject Spawn2;
+    public GameObject Spawn3;
+    public GameObject Spawn4;
+
+    private float basicEnemyCost = 20;
+    private float heavyEnemyCost = 60;
+
+
     public int Difficulty = 0; //Game Diffiulty as a whole, selected in menu
     private double BossPointScaling; //Factor by which points are multiplied by (UPPON BOSS FIGHT)
     
-    public float GMPointTimer = 2f;     //TIMER when the GameMasterAI(GMAI) gets points
-    public float GMSpendingTimer = 5f;  //TIMER when the GMAI starts spending points
+    public float GMPointTimer = 5f;     //TIMER when the GameMasterAI(GMAI) gets points
+    public float GMSpendingTimer = 7f;  //TIMER when the GMAI starts spending points
     public float DifficultyScaling;     //TIMER "more time = more difficulty" time frame
     
     private double DifficultyStage = 1; //what ups the difficulty after the timeframe
@@ -58,6 +64,13 @@ public class GM_AI : MonoBehaviour
 
     }
 
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            display();
+        }
+    }
+
     IEnumerator RunTimer1()
     {
         while (true)
@@ -72,6 +85,9 @@ public class GM_AI : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(GMSpendingTimer);
+            SpendPoints();
+            SpendPoints();
+            SpendPoints();
             SpendPoints();
         }
     }
@@ -92,13 +108,42 @@ public class GM_AI : MonoBehaviour
         double selectedPointValue = PointSelection[randomPosition];  //Retrieve the point value at the random index
 
         CurrentPoints += selectedPointValue * DifficultyStage; //Give points based on other difficulty values
-        Debug.Log("Function1 called.");
+        Debug.Log("Function1 called. Points given.");
     }
 
     void SpendPoints()
     {
-        //Code to spend points (requres actual enemy prefabs)
-        Debug.Log("Function2 called.");
+        //Randomises positions for spawns
+        int randomSpawn = Random.Range(0, 4);
+        GameObject selectedSpawn = null;
+        switch (randomSpawn)
+        {
+        case 0:
+            selectedSpawn = Spawn1;
+            break;
+        case 1:
+            selectedSpawn = Spawn2;
+            break;
+        case 2:
+            selectedSpawn = Spawn3;
+            break;
+        case 3:
+            selectedSpawn = Spawn4;
+            break;
+        }
+
+        if(CurrentPoints > heavyEnemyCost)
+        {
+            return;
+        }
+
+        //Code to spend points
+        if(CurrentPoints > basicEnemyCost)
+        {
+            Instantiate(EnemyPrefab, selectedSpawn.transform.position, transform.rotation);
+            CurrentPoints -= basicEnemyCost;
+        }
+        Debug.Log("Function2 called. Enamies Spawned");
     }
 
     void Function3()
@@ -106,8 +151,9 @@ public class GM_AI : MonoBehaviour
         DifficultyStage += .1;
         Debug.Log("Function3 called.");
     }
+
+    void display()
+    {
+        Debug.Log("Current points:" + CurrentPoints);
+    }
 }
-
-
-
-Remove this to uncomment   */

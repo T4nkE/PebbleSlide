@@ -10,6 +10,13 @@ public class pm : MonoBehaviour
     public GameObject Right;
     public GameObject projPrefab; // Prefab of the projectile
 
+    public GameObject EnemyPrefab;
+    public GameObject Spawn1;
+    public GameObject Spawn2;
+    public GameObject Spawn3;
+    public GameObject Spawn4;
+
+
     public float jump; // Jump Power
     
     public bool facingRight;
@@ -71,6 +78,11 @@ public class pm : MonoBehaviour
             }
 
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Instantiate(EnemyPrefab, Spawn1.transform.position, transform.rotation);
+        }
     }
 
     // Jump Checks
@@ -102,5 +114,4 @@ public class pm : MonoBehaviour
     {
         return move == 0;
     }
-   
 }
