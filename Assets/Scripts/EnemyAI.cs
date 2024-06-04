@@ -13,8 +13,8 @@ public class EnemyAI : MonoBehaviour
     public GameObject HealthBar;
         
     GameObject projectile;
-    [SerializeField] private double maxHealth;
-    private double currentHealth;
+    [SerializeField] private float maxHealth;
+    private float currentHealth;
 
 
     void Start()
@@ -90,7 +90,7 @@ public class EnemyAI : MonoBehaviour
 
     void UpdateHealth()
     {
-        Vector3 healthScale = HealthBar.transform.localScale = 1.5;
+        Vector3 healthScale = HealthBar.transform.localScale * (3/2);
         healthScale.x = currentHealth / maxHealth;
         HealthBar.transform.localScale = healthScale;
     }
